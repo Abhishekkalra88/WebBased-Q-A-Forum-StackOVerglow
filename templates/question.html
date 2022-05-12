@@ -1,0 +1,95 @@
+<html lang="en">
+<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Question</title>
+    </head>
+    <style type='text/css'>
+    body {
+        font-family: monospace;
+        padding: 10px;
+        margin: 10px;
+    }
+    table.recipe {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    caption {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 120%;
+        padding: 5px;
+        letter-spacing: 5px;
+        font-weight: bold;
+    }
+    table.recipe thead th {
+        font-weight: bold;
+        font-size: 150%;
+        color: black;
+    }
+    table.recipe thead th, table.recipe tbody td {
+        padding: 5px;
+        text-transform: lowercase;
+    }
+    table.recipe tbody td, table.recipe tfoot td {
+        font-size: 130%;
+    }
+    table.recipe tfoot td {
+        padding: 5px;
+    }
+    table.recipe tfoot td p {
+        padding: 5px;
+    }
+    li {
+        margin-left: 30px;
+        padding-left: 30px;
+    }
+    table, th, td {
+    border: 1px solid;
+    }
+    </style>
+
+    <caption>More Questions</caption>
+    <table>
+    
+        <tr>
+            <td>
+                aid
+            </td>
+            <td>
+                qid
+            </td>
+            <td>
+                uid
+            </td>
+            <td>
+                body
+            </td>
+            <td>
+                date
+            </td>
+        </tr>
+        {% for index, x in table.iterrows() %}
+        <tr>
+            <td onclick="location.href='yourpage.html'"><a href="{{url_for('questions',type = x['aid'] )}}">{{x["aid"]}}</a></td>		
+
+            <td>
+                {{x["qid"]}}
+            </td>
+            <td>
+                {{x["uid"]}}
+            </td>
+            <td>
+                {{x["body"]}}
+            </td>
+            <td>
+                {{x["date"]}}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</body>
+</html>

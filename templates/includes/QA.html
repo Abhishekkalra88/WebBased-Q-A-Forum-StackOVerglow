@@ -1,0 +1,123 @@
+
+<caption>Question</caption>
+<table>
+
+    <tr>
+        <td>
+            qid
+        </td>
+        <td>
+            asker
+        </td>
+        <td>
+            title
+        </td>
+        <td>
+            body
+        </td>
+        <td>
+            date
+        </td>
+        <td>
+            Action
+        </td>
+    </tr>
+    {% for index, x in qtable.iterrows() %}
+    {% set qid= x["qid"] %}
+    <tr>
+        <td>
+            {{x["qid"]}}
+        </td>
+        <td>
+            {{ x["uname"] }}
+        </td>		
+        <td>
+            {{x["title"]}}
+        </td>
+        <td>
+            {{ x["body"] }}
+        </td>
+        <td>
+            {{x["date"]}}
+        </td>
+        {% if username|length %}
+        <td>
+            <div class="container">
+                <h1></h1>
+                <br>
+                
+                <form action="{{ url_for('qa', qid = qid, aid=-1) }}" method="post">
+                    <input type="submit" name="LikeQ"  value="Like">
+                    <input type="submit" name="DislikeQ"  value="Dislike">
+                </form>
+
+            </div>
+        </td>
+        {% endif %}
+        
+        
+    </tr>
+    {% endfor %}
+</table>
+{% if username|length %}
+{% set qid = qtable['qid'][0] %}
+<form action="{{ url_for('qa', qid = qid, aid=-1) }}" method="post">  
+    <input type="text" placeholder="Post an answer" name="answer" value="{{ request.form.answer }}">
+    <input class="btn btn-default" type="submit" value="Post an answer">
+</form>
+{% endif %}
+
+<caption>Answers</caption>
+<table>
+    
+        <tr>
+            <td>
+                aid
+            </td>
+            <td>
+                answerer
+            </td>
+            <td>
+                Answer
+            </td>
+            <td>
+                Date
+            </td>
+            <td>
+                Action
+            </td>
+    
+        </tr>
+        {% for index, x in atable.iterrows() %}
+        {% set aid=x["aid"] %}
+        <tr>
+            <td>
+                {{x["aid"]}}
+            </td>
+            <td>
+                {{ x["uname"] }}
+            </td>
+            <td>
+                {{x["body"]}}
+            </td>
+            <td>
+                {{x["date"]}}
+            </td>
+            {% if username|length %}
+            <td>
+                <div class="container">
+                    <h1></h1>
+                    <br>
+                    
+                    <form action="{{ url_for('qa', qid = qid, aid=aid) }}" method="post">
+                        <input type="submit" name="LikeA"  value="Like">
+                        <input type="submit" name="DislikeA"  value="Dislike">
+                    </form>
+                </div>
+            </td>
+            {% endif %}
+            
+        </tr>
+    
+        {% endfor %}
+    </table>

@@ -1,0 +1,52 @@
+<caption>Your Statistics</caption>
+        <table>
+          
+            <tr>
+                <td>
+                    last_name
+                </td>
+                <td>
+                    first_name
+                </td>
+                <td>
+                    net_vote
+                </td>
+                <td>
+                    best_answers
+                </td>
+                <td>
+                    answers
+                </td>
+                <td>
+                    Presence
+                </td>
+                <td>
+                    status
+                </td>
+            </tr>
+            {% for index, x in table.iterrows() %}
+            <tr>
+                <td>{{x["last_name"]}}</a></td>		
+    
+                <td>
+                    {{x["first_name"]}}
+                </td>
+                <td>
+                    {{x["net_vote"]}}
+                </td>
+                <td>
+                    {{x["best_answers"]}}
+                </td>
+                <td>
+                    {{x["answers"]}}
+                </td>
+                <td>
+                    {{x["Presence"]}}
+                </td>
+                <td>
+                    {{x["STATUS"]}}
+                </td>
+            </tr>
+    
+            {% endfor %}
+        </table>

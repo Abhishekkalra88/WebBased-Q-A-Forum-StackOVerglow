@@ -1,0 +1,61 @@
+<br>
+<br>
+<br>
+<!-- <input type="text" placeholder="category" name="category" value="{{request.form.category}}"> -->
+<form action="{{ url_for('post') }}" method="post">
+    Available categories: 
+    {% for index, x in categories.iterrows() %}
+        <label for="{{ x['cname'] }}"> {{ x["cname"] }} </label>
+    {% endfor %}
+    <input type="text" id="category" name="category" value="{{ request.form.category }}">
+    <br><br>    
+    <input type="text" placeholder="Post a Question" name="question" value="{{request.form.question}}">
+    <input class="btn btn-default" type="submit" value="Post a Question">
+</form>
+<!-- <div class="dropdown">
+    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+    <div id="myDropdown" class="dropdown-content">
+        {% for index, x in categories.iterrows() %}
+            <div value="{{ request.form.category }}"> {{ x["cname"] }} </div>
+        {% endfor %}
+    </div>
+</div> -->
+
+
+<caption>Answers given</caption>
+<table>  
+  {% if table is not none and table|length > 0 %}
+
+    {% for index, x in table.iterrows() %}
+      <tr>
+          <td>
+            <a href="{{ url_for('qa' ,qid = x['qid'], aid=x['aid']) }}">{{x["body"]}}</a>
+          </td>
+          <td>
+              {{x["date"]}}
+          </td>
+      </tr>
+    {% endfor %}
+  {% else %}
+    <h3> No activities yet</h3>
+</table>
+  {% endif %}
+  <caption>Questions Asked</caption>
+<table>
+  {% if table1 is not none and table1|length > 0 %}
+      {% for index, x in table1.iterrows() %}
+          <tr>
+              <td>
+                <a href="{{ url_for('qa',qid = x['qid'], aid=-1) }}">{{x["title"]}}</a>
+                  
+              </td>
+              <td>
+                  {{x["date"]}}
+              </td>
+          </tr>
+      {% endfor %}
+  
+  {% else %}
+  <h4> No activities yet</h4>
+</table>
+  {% endif %}

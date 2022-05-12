@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+  </head>
+  <style type='text/css'>
+    #togglePassword {
+      margin-left: -30px; 
+      cursor: pointer;
+    }
+/*     
+    .container {
+      margin: 0 auto;
+    } */
+
+  </style>
+  <body>
+    <div class="container">
+      <div class="screen">
+          
+        <div class="screen__content">
+          
+          <form class="login" action="/login" method="post">
+            <a class="nav-link" href="{{ url_for('splash') }}">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Back to splash</span>
+            </a>
+            <div class="login__field">
+              <i class="login__icon fas fa-user"></i>
+              <input type="text" class="login__input" name="username" value="{{request.form.username }}" placeholder="User name">
+            </div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input type="password" class="login__input" placeholder="Password" name="password" id="id_password" value="{{request.form.password }}">
+              <i class="far fa-eye" id="togglePassword"></i>
+            </div>
+            <button class="button login__submit" type="submit" value="Login">
+              <span class="button__text">Log In Now</span>
+              <i class="button__icon fas fa-chevron-right"></i>
+            </button>				
+          </form>
+          {% if error %}
+          <p class="error"><strong>Error:</strong> {{ error }}
+          {% endif %}
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>		
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>		
+      </div>
+    </div>
+    <!-- <div class="container">
+      <h1>Please log in</h1>
+      <br>
+      <form action="/login" method="post">
+        <input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+         <input type="password" placeholder="Password" name="password" id="id_password" value="{{request.form.password }}">
+         <i class="far fa-eye" id="togglePassword"></i>
+        <input class="btn btn-default" type="submit" value="Login">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div> -->
+  </body>
+
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#id_password');
+ 
+    togglePassword.addEventListener('click', function (e) {
+      // toggle the type attribute
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      // toggle the eye slash icon
+      this.classList.toggle('fa-eye-slash');
+    });
+  </script>
+</html>

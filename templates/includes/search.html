@@ -1,0 +1,42 @@
+
+{% if table|length or table1|length %}
+
+{% else %}
+<table>
+    <tr>
+        We couldn't find anything!
+    </tr>
+</table>
+
+{% endif %}
+
+{% if table is not none and table|length > 0 %}
+  <caption>Answers</caption>
+  {% for index, x in table.iterrows() %}
+
+  <table>
+    <tr>
+      <td><a href="{{ url_for('qa',qid = x['qid'], aid=x['aid']) }}">{{x["body"]}}</a></td>	
+      <td>
+          {{x["date"]}}
+      </td>
+    </tr>
+  </table>
+
+  {% endfor %}
+{% endif %}
+{% if table1 is not none and table1|length > 0 %}
+<caption>Questions</caption>
+<table>
+    {% for index, x in table1.iterrows() %}
+      <tr>
+          <td>
+            <a href="{{url_for('qa',qid = x['qid'], aid=-1)}}">{{x["title"]}}</a></td>
+          </td>
+          <td>
+              {{x["date"]}}
+          </td>
+      </tr>
+    {% endfor %}
+</table>
+{% endif %}

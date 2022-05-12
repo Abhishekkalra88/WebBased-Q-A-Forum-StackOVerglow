@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Profile</title>
+        
+    </head>
+    <style type='text/css'>
+    body {
+        margin: 0;
+    }
+    table.recipe {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    caption {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 120%;
+        padding: 5px;
+        letter-spacing: 5px;
+        font-weight: bold;
+    }
+    table.recipe thead th {
+        font-weight: bold;
+        font-size: 150%;
+        color: black;
+    }
+    table.recipe thead th, table.recipe tbody td {
+        padding: 5px;
+        text-transform: lowercase;
+    }
+    table.recipe tbody td, table.recipe tfoot td {
+        font-size: 130%;
+    }
+    table.recipe tfoot td {
+        padding: 5px;
+    }
+    table.recipe tfoot td p {
+        padding: 5px;
+    }
+    table, th, td {
+        border: 1px solid;
+    }
+    </style>
+    
+<body>
+    {% with username=username %}
+        {% include 'navbar.html' %}
+    {% endwith %}
+    <table>
+    <caption>Your Statistics</caption>
+        <tr>
+            <td>
+                last_name
+            </td>
+            <td>
+                first_name
+            </td>
+            <td>
+                net_vote
+            </td>
+            <td>
+                best_answers
+            </td>
+            <td>
+                answers
+            </td>
+            <td>
+                Presence
+            </td>
+            <td>
+                status
+            </td>
+        </tr>
+        {% for index, x in table.iterrows() %}
+        <tr>
+            <td>{{x["last_name"]}}</a></td>		
+
+            <td>
+                {{x["first_name"]}}
+            </td>
+            <td>
+                {{x["net_vote"]}}
+            </td>
+            <td>
+                {{x["best_answers"]}}
+            </td>
+            <td>
+                {{x["answers"]}}
+            </td>
+            <td>
+                {{x["Presence"]}}
+            </td>
+            <td>
+                {{x["STATUS"]}}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</body>
+</html>
