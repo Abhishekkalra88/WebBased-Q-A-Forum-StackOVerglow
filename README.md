@@ -10,3 +10,9 @@ Stack Overglow is a simplistic version of Stack Overflow. It is a question and a
 Both users and non-users, or browsers (a person who browses), can:
 1. View questions and answers
 2. Search questions to a limited extent.
+
+### Setup Details: 
+
+To deploy and test our project, import the whole project folder, use
+flask run command to start the project. The application is served via the local
+host port 5000 and can be accessed via any commonly available web browser
