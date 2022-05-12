@@ -13,6 +13,6 @@ Both users and non-users, or browsers (a person who browses), can:
 
 ### Setup Details: 
 
-To deploy and test our project, import the whole project folder, use
-flask run command to start the project. The application is served via the local
+To deploy the project, import all files in the repo (besides the report), use
+flask run command to start the project from command prompt. The application is served via the local
 host port 5000 and can be accessed via any commonly available web browser
