@@ -15,4 +15,7 @@ Both users and non-users, or browsers (a person who browses), can:
 
 To deploy the project, import all files in the repo (besides the report), use
 flask run command to start the project from command prompt. The application is served via the local
-host port 5000 and can be accessed via any commonly available web browser
+host port 5000 and can be accessed via any commonly available web browser.
+
+Application uses a local MYSQL database instance. Please setup before using the application
+https://dev.mysql.com/downloads/installer/
