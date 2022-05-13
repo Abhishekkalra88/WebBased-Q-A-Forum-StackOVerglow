@@ -21,4 +21,4 @@ Application uses a local MYSQL database instance. Please setup before using the 
 https://dev.mysql.com/downloads/installer/
 
 For detailed project Report Click Here: 
-[https://github.com/Abhishekkalra88/WebBased-Q-A-Forum-StackOVerglow/blob/main/Project-_Report__1_.pdf](Application-Details-Specifications)
+(https://github.com/Abhishekkalra88/WebBased-Q-A-Forum-StackOVerglow/blob/main/Project-_Report__1_.pdf)[Application-Details-Specifications]
