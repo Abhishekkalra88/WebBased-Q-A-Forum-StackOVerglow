@@ -20,5 +20,5 @@ host port 5000 and can be accessed via any commonly available web browser.
 Application uses a local MYSQL database instance. Please setup before using the application
 https://dev.mysql.com/downloads/installer/
 
-For detailed project Report Click Here: [Application-Details-Specifications]
-(https://github.com/Abhishekkalra88/WebBased-Q-A-Forum-StackOVerglow/blob/main/Project-_Report__1_.pdf)
+For detailed project Report Click Here:
+[Applicaiton-Specification-Functions-Details](https://github.com/Abhishekkalra88/WebBased-Q-A-Forum-StackOVerglow/blob/main/Project-_Report__1_.pdf)
