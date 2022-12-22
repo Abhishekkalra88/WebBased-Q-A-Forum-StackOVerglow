@@ -1,0 +1,187 @@
+CREATE TABLE User (
+    uid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    uname VARCHAR(50) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    Presence INT NOT NULL, -- init to 0 for new user
+    email VARCHAR(50) NOT NULL,
+    bio VARCHAR(250) NOT NULL
+);
+-- 10 presence per BA, 1 presence per upvote
+INSERT INTO User VALUES (NULL,'Greg','Cooper','SuperCooper','SC500600700&',155,'SC@outlook.com','Hey this is Greg from California.');
+INSERT INTO User VALUES (NULL,'Shanesh','Janpaul','Giggity','Giggitygiggity2568',84,'Gig@outlook.com', 'Hey this is Shanesh from India.');
+INSERT INTO User VALUES (NULL,'Shan', 'Zhuge','FiveBooks', 'qwertyuiop1000',33,'Zhuge@outlook.com','This is Shan, from China.');
+INSERT INTO User VALUES (NULL,'Recep', 'Ergodan', 'RCPep', 'hjjjklll2000$',2,'Ergo@gmail.com', 'Hey this is Ergodan from Turkey.');
+INSERT INTO User VALUES (NULL,'Melvus', 'Worthington', 'IgniteFlames', 'UKbritainengland2020', 1, 'Mel@gmail.com', 'Hey this is Mel from UK!');
+
+SELECT * FROM User;
+
+
+-- 5 Categories
+
+CREATE TABLE Category (
+    cid INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    cname VARCHAR(50) NOT NULL
+);
+
+INSERT INTO Category VALUES (NULL,'Computer Science');
+INSERT INTO Category VALUES (NULL,'Physics');
+INSERT INTO Category VALUES (NULL,'Arts');
+INSERT INTO Category VALUES (NULL,'Gaming');
+INSERT INTO Category VALUES (NULL,'Religion');
+
+SELECT * FROM Category;
+
+-- Users: 5 entries
+CREATE TABLE Questions (
+    qid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,
+    cid INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    body VARCHAR(1000) NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (uid) REFERENCES User(uid),
+    FOREIGN KEY (cid) REFERENCES Category(cid)
+);
+
+INSERT INTO Questions VALUES (NULL,1, 1, 'What are compliers?', 'as stated in the title', '2022-03-01');
+INSERT INTO Questions VALUES (NULL,1, 1, 'What are neural networks?', 'as stated in the title', '2022-02-01');
+INSERT INTO Questions VALUES (NULL,2, 1, 'What is a stack in programming?', 'as stated in the title', '2022-01-01');
+INSERT INTO Questions VALUES (NULL,2, 2, 'What is Gravity?', 'as stated in the title', '2022-01-15');
+INSERT INTO Questions VALUES (NULL,2, 2, 'What are Newton''s three laws?', 'as stated in the title', '2022-02-15');
+INSERT INTO Questions VALUES (NULL,3, 3, 'Which is most famous work of Leornado Da Vinci?', 'as stated in the title', '2022-02-28');
+INSERT INTO Questions VALUES (NULL,3, 3, 'Which is famous work of Pablo Picasso?', 'as stated in the title', '2022-03-01');
+INSERT INTO Questions VALUES (NULL,3, 4, 'Best Laptops for Gaming?', 'as stated in the title', '2022-01-31');
+INSERT INTO Questions VALUES (NULL,3, 4, 'Best online multi-player games?', 'as stated in the title', '2022-03-03');
+INSERT INTO Questions VALUES (NULL,5, 5, 'How many religions are there in the world?', 'as stated in the title', '2022-01-31');
+INSERT INTO Questions VALUES (NULL,2, 1, 'How do I show the changes which have been staged?', 'As stated in the title', '2009-10-19');
+INSERT INTO Questions VALUES (NULL,4, 1, 'How do I discard unstaged changes in Git?', 'As stated in the title', '2008-09-15');
+INSERT INTO Questions VALUES (NULL,4, 1, 'How to find and restore a deleted file in a Git repository','As stated in the title', '2009-05-04');
+INSERT INTO Questions VALUES (NULL,5, 1, 'How do I undo the most recent local commits in Git?','As stated in the title', '2007-03-22');
+INSERT INTO Questions VALUES (NULL,4, 1, 'How do I delete a Git branch locally and remotely?', 'As stated in the title','2010-01-05');
+
+Select * from Questions;
+
+CREATE TABLE Answers (
+    aid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    qid INTEGER NOT NULL,
+    uid INTEGER NOT NULL,
+    body VARCHAR(1000) NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (qid) REFERENCES Questions(qid),
+    FOREIGN KEY (uid) REFERENCES User(uid)
+);
+
+-- u1 BA 1
+INSERT INTO Answers VALUES (NULL,1, 1, 'A compiler is a special program that processes statements written in a particular programming language and turns them into machine language or code that a computer''s processor uses.', '2022-03-02');
+-- u4 A1
+INSERT INTO Answers VALUES (NULL,1, 4, 'The language processor that reads the complete source program written in high-level language as a whole in one go and translates it into an equivalent program in machine language is called a Compiler.', '2022-03-03');
+-- u1 BA 2
+INSERT INTO Answers VALUES (NULL,2, 1, 'A neural network is a series of algorithms that endeavors to recognize underlying relationships in a set of data through a process that mimics the way the human brain operates.', '2022-02-02');
+-- U4 A2
+INSERT INTO Answers VALUES (NULL,2, 4, 'Neural networks are computing systems with interconnected nodes that work much like neurons in the human brain. Using algorithms, they can recognize hidden patterns and correlations in raw data, cluster and classify it, and over time continuously learn and improve.', '2022-03-02');
+-- u5 A1
+INSERT INTO Answers VALUES (NULL,2, 5, 'Neural networks are a set of algorithms, modeled loosely after the human brain, that are designed to recognize patterns. They interpret sensory data through a kind of machine perception, labeling or clustering raw input.', '2022-02-28');
+-- u1 BA 3
+INSERT INTO Answers VALUES (NULL,3, 1, 'A stack is an array or list structure of function calls and parameters used in modern computer programming and CPU architecture. Similar to a stack of plates at a buffet restaurant or cafeteria, elements in a stack are added or removed from the top of the stack, in a ''last in first, first out'' or LIFO order.', '2022-01-02');
+-- u1 BA 4
+INSERT INTO Answers VALUES (NULL,4, 1, 'Gravity is the force by which a planet or other body draws objects toward its center. The force of gravity keeps all of the planets in orbit around the sun.', '2022-01-16');
+-- u1 BA 5
+INSERT INTO Answers VALUES (NULL,5, 1, 'The Newton''s three laws of motion are Law of Inertia, Law of Mass and Acceleration, and the Third Law of Motion.', '2022-02-20');
+-- u1 BA 6
+INSERT INTO Answers VALUES (NULL,6, 1, 'Mona Lisa, oil on wood panel by Leonardo da Vinci, c. 1503-19; in the Louvre, Paris. The world''s most famous artwork, the Mona Lisa draws thousands of visitors to the Louvre Museum each day, many of whom are compelled by the sitter''s mysterious gaze and enigmatic smile.', '2022-03-01');
+-- u5 A2
+INSERT INTO Answers VALUES (NULL,6, 5, 'Leonardo da Vinci''s Mona Lisa and The Last Supper occupy unique positions as the most famous, most reproduced, most parodied portrait and religious painting of all time.', '2022-03-10');
+-- u1 BA 7
+INSERT INTO Answers VALUES (NULL,7, 1, 'Guernica is not only Picasso''s best-known work, it''s one of the most famous (and Google-searched) paintings in the world. Its depiction of an aerial bombing raid on the Basque town of Guernica in April 1937, during the Spanish Civil War, was an eerie visual prelude to the coming atrocities of World War II.', '2022-03-04');
+-- u4 A3
+INSERT INTO Answers VALUES (NULL,7, 4, 'Pablo Picasso was one of the greatest artists of the 20th century, famous for paintings like Guernica and for the art movement known as Cubism.', '2022-03-05');
+-- u1 BA 8
+INSERT INTO Answers VALUES (NULL,8, 1, 'When buying a gaming notebook, get one that will last you for a few years. If you can afford it, get a mid-range to high-end GPU, though obviously a better card will offer better performance. That choice is more important than RAM and the CPU, though you should pay attention to those as well.', '2022-02-05');
+-- u1 BA 9
+INSERT INTO Answers VALUES (NULL,9, 1, 'Minecraft has the largest land-based open-world to explore out of any game in this list by far. The world of Minecraft is approximately 1.5 billion sq.', '2022-03-05');
+-- u3 A1
+INSERT INTO Answers VALUES (NULL,10, 3, 'It may surprise you to know that there are over 4,000 recognized religions in the world. These religions consist of churches, congregations, faith groups, tribes, cultures, and movements. Even though there are so many, three-quarters of the world''s population practice one of the five major religions.', '2022-02-27');
+-- u2 BA 1-5
+INSERT INTO Answers VALUES (NULL,11,2, 'Use git checkout -- .', '2009-10-19');
+INSERT INTO Answers VALUES (NULL,12,2, 'It should just be: git diff --cached', '2008-09-15');
+INSERT INTO Answers VALUES (NULL,13,2, 'Find the last commit that affected the given path. As the file isn''t in the HEAD commit, that previous commit must have deleted it.', '2009-05-04');
+INSERT INTO Answers VALUES (NULL,14,2, '$ git commit -m "Something terribly misguided" # (0: Your Accident)
+$ git reset HEAD~                              # (1)
+[ edit files as necessary ]                    # (2)
+$ git add .                                    # (3)
+$ git commit -c ORIG_HEAD                      # (4)', '2007-03-22');
+INSERT INTO Answers VALUES (NULL,15,2, '$ git push -d <remote_name> <branchname>
+$ git branch -d <branchname>', '2010-01-05');
+
+Select * from answers;
+
+CREATE TABLE Transactions (
+    tid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    uid INT NOT NULL,
+    qid INT NOT NULL,
+    aid INT NOT NULL,
+    upvote INT NOT NULL,
+    downvote INT NOT NULL,
+    best INT NOT NULL,
+    FOREIGN KEY (qid) REFERENCES Questions(qid),
+    FOREIGN KEY (uid) REFERENCES User(uid),
+    FOREIGN KEY (aid) REFERENCES Answers(aid)
+);
+
+                            --   uid  qid  aid  up  down best
+-- best answers
+-- 9 BA for u1
+INSERT INTO Transactions VALUES (NULL,'1', '1', '1', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'1', '2', '3', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'2', '3', '6', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'2', '4', '7', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'2', '5', '8', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'3', '6', '9', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'3', '7', '11', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'3', '8', '13', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'3', '9', '14', '0','0','1');
+-- 1 BA for u3
+INSERT INTO Transactions VALUES (NULL,'4', '10', '15', '0','0','1');
+-- 5 BA for u2
+INSERT INTO Transactions VALUES (NULL,'5', '11', '16', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'2', '12', '17', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'4', '13', '18', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'4', '14', '19', '0','0','1');
+INSERT INTO Transactions VALUES (NULL,'5', '15', '20', '0','0','1');
+
+-- up/down votes
+-- 3 net votes for u1
+INSERT INTO Transactions VALUES (NULL,'2', '1', '1', '1','0','0');
+INSERT INTO Transactions VALUES (NULL,'3', '1', '1', '1','0','0');
+INSERT INTO Transactions VALUES (NULL,'4', '1', '1', '1','0','0');
+-- 2 net votes for u2
+INSERT INTO Transactions VALUES (NULL,'1', '11', '16', '1','0','0');
+INSERT INTO Transactions VALUES (NULL,'3', '12', '17', '1','0','0');
+-- 1 net vote for u3
+INSERT INTO Transactions VALUES (NULL,'1', '10', '15', '1','0','0');
+-- 1 net vote for u5
+INSERT INTO Transactions VALUES (NULL,'1', '2', '5', '1','0','0');
+
+Select * from Transactions;
+
+-- View-Stats: 5 entries
+CREATE VIEW VIEW_STATS as
+SELECT A.UID,IFNULL(net_vote,0) as net_vote,
+IFNULL(best_answers,0) as best_answers,
+IFNULL(answers,0) as answers,
+IFNULL(score,0) as score,
+case when score >= 90  then 3 
+when score >=50 AND score <89 then 2
+when score >=10 AND score <50 then 1
+else 0 END STATUS
+FROM
+(Select USER.UID, (sum(upvote) - sum(downvote)) as net_vote, 
+sum(best) as best_answers, count(distinct ANSWERS.aid) as answers,
+(10 * sum(best) + 1* sum(upvote)) score
+FROM USER left join answers  on USER.UID = ANSWERS.UID
+left join TRANSACTIONS on ANSWERS.AID = TRANSACTIONS.AID
+ group by USER.UID) A ;
+ 
+SELECT * FROM View_stats;
